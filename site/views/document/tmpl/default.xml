@@ -5,6 +5,25 @@
         </layout>
 	<fields name="params">
                 <fieldset name="basic">
+
+			<field
+                                name="folder"
+                                type="folderlist"
+                                label="Folder"
+				description="Please select the folder where the '.md' files are located. Or first create that folder and copy (clone the github wiki)."
+                        />
+
+			<field
+                                name="githublink"
+                                type="text"
+                                label="GitHun link"
+                        />
+
+			<field type="list" name="sidebar" default="0" label="Show Sidebar" description="" >
+					<option value="1">Show</option>
+					<option value="0">Hide</option>
+			</field>
+
 		</fieldset>
 	</fields>
 

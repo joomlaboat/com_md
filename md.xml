@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="2.5" method="upgrade">
-        <name>e24</name>
+        <name>MD</name>
         <author>Ivan Komlev</author>
         <authorEmail>ivankomlev@gmail.com</authorEmail>
         <authorUrl>http://joomlaboat.com</authorUrl>
 	<license>GNU General Public License</license>
         <copyright>Copyright (C) Ivan Komlev All rights reserved.</copyright>
-        <creationDate>September, 2021</creationDate>
+        <creationDate>October, 2021</creationDate>
         <version>1.0.0</version>
-        <description>e24 - connector dashboard</description>
+        <description>MD Document Viewer</description>
  
         <files folder="site">
                <filename>index.html</filename>
-	        <filename>e24.php</filename>
+	        <filename>md.php</filename>
                 <filename>controller.php</filename>
                 <filename>router.php</filename>
-		<folder>css</folder>
+		<folder>assets</folder>
 		<folder>includes</folder>
-		<folder>js</folder>
                 <folder>views</folder>
         </files>
 
