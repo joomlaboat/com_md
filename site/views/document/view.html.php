@@ -51,6 +51,12 @@ class MDViewDocument extends JViewLegacy
 		$this->githublink = $params->get('githublink');
 		
 		$this->show_sidebar = (bool)(int)$params->get('sidebar');
+		
+		$parts = explode('.',$this->homeFileLabel);
+		if(isset($parts[1]))
+			$this->Label=str_replace('-','',$parts[1]);
+		else
+			$this->Label=str_replace('-','',$parts[0]);
 	
 		parent::display($tpl);
 	}

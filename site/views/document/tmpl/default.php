@@ -73,6 +73,8 @@ $file_content = file_get_contents($this->currentFile);
 $anchorsParsed = MDSidebar::addAnchors2MD($file_content);
 
 $mdParsed = $Parsedown->text($anchorsParsed);
+
+echo '<h1>' . $this->Label . '</h1>';
 echo '<div class="theme-default-content content__default">';
 echo $mdParsed;
 
