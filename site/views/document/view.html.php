@@ -31,7 +31,7 @@ class MDViewDocument extends JViewLegacy
 		$this->sidebar = MDSidebar::buildSidebar($folder);
 		
 		$jinput=Factory::getApplication()->input;
-		$this->homeFileLabel = $this->Itemid=$jinput->getCmd('document','');
+		$this->homeFileLabel = $jinput->getString('document','');
 		if($this->homeFileLabel == '')
 		{
 			$this->homeFileLabel = $params->get('home');
@@ -54,9 +54,9 @@ class MDViewDocument extends JViewLegacy
 		
 		$parts = explode('.',$this->homeFileLabel);
 		if(isset($parts[1]))
-			$this->Label=str_replace('-','',$parts[1]);
+			$this->Label=str_replace('-',' ',$parts[1]);
 		else
-			$this->Label=str_replace('-','',$parts[0]);
+			$this->Label=str_replace('-',' ',$parts[0]);
 	
 		parent::display($tpl);
 	}

@@ -9,6 +9,8 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+use \Joomla\CMS\Factory;
+
 class MDSidebar
 {
 	static public function buildSidebar($folder,$main_menu_link = null)
@@ -20,12 +22,22 @@ class MDSidebar
 	
 		$files = MDSidebar::getListOfFiles($folder);
 		
+		
+		$jinput=Factory::getApplication()->input;
+		$document = $jinput->getString('document','');
+		
 		$li = [];
 		
+		
+		$index = 1;
 		foreach($files as $file)
 		{
 			$label = str_replace('.md','',$file);
 			$label_no_dash = str_replace('-',' ',$label);
+			
+			$active = false;
+			if($document == $label)
+				$active = true;
 			
 			$link = $main_menu_link.'?document='.$label;
 			
@@ -36,24 +48,45 @@ class MDSidebar
 			{
 				$anchors_li[] = '<li><a href="'.$link.'#'.$anchor->anchor.'">'.$anchor->label.'</a></li>';
 			}
-			//print_r($anchors_li);
 			
-			if(count($anchors_li) == 0)
-				$li[] = '<li><a href="'.$link.'">'.$label_no_dash.'</a></li>';
+			$parts = explode('.',$label_no_dash);
+			if(isset($parts[1]))
+				$label_no_dash=str_replace('-',' ',$parts[1]);
 			else
-				$li[] = '<li><a href="'.$link.'">'.$label_no_dash.'</a><ul>'.implode('',$anchors_li).'</ul></li>';
-	
+				$label_no_dash=str_replace('-',' ',$parts[0]);
+			
+			if(count($anchors_li) > 0)
+			{
+			
+				$class = '';
+				if($index == 1)
+					$class = 'first';
+				if($index == count($files))
+					$class = 'last';
+			
+				$subitems='';
+				if(count($anchors_li) > 0)
+					$subitems	= '<ul>'.implode('',$anchors_li).'</ul>';
+			
+				$li[] = '<li><label for="list-item-'.$index.'" class="'.$class.($active ? ' mdSidebarWrapper_Active' : '').'">'
+					.$label_no_dash.'</label><input type="checkbox" id="list-item-'.$index.'"'.($active ? ' checked="checked"' : '').'>'.$subitems.'</li>';
+			}
+			else
+				$li[] = '<li><a href="'.$link.'"'.($active ? ' class="mdSidebarWrapper_Active"' : '').'>'.$label_no_dash.'</a></li>';
+				
+			
+			$index ++;
 		}
 		
-		if(count($anchors_li) == 0)
-			$li[] = '<li><a href="'.$link.'">'.$label_no_dash.'</a></li>';
-		else
-			$li[] = '<li><a href="'.$link.'">'.$label_no_dash.'</a><ul>'.implode('',$anchors_li).'</ul></li>';
+		//if(count($anchors_li) == 0)
+			//$li[] = '<li><a href="'.$link.'">'.$label_no_dash.'</a></li>';
+		//else
+			//$li[] = '<li><a href="'.$link.'">'.$label_no_dash.'</a><ul>'.implode('',$anchors_li).'</ul></li>';
 		
 		if(count($li) == 0)
 			return '';
 			
-		return '<ul style="list-style:none;" class="list-unstyled">'.implode('',$li).'</ul>';
+		return '<div class="mdSidebarWrapper"><ul style="list-style:none;" class="list-unstyled">'.implode('',$li).'</ul></div>';
 	}
 	
 	static public function getListOfFiles($folder)
