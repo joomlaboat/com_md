@@ -60,6 +60,20 @@ $js[]="66.a76e209e.js">
 $document = Factory::getDocument();
 $document->addCustomTag('<link href="'.JURI::root(true).'/components/com_md/assets/css/0.styles.1858edcc.css" type="text/css" rel="stylesheet" >');
 
+$document->addCustomTag('<style>
+
+.theme-default-content h2{
+	margin-top: 60px;
+}
+
+.theme-default-content h1:not(:first-child){
+	margin-top:60px;
+	border-top:3px solid #f9a541;
+	padding-top:20px;
+}
+
+</style>');
+
 $Parsedown = new Parsedown();
 
 

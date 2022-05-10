@@ -1147,7 +1147,7 @@ class Parsedown
             return array(
                 'extent' => strlen($matches[0]),
                 'element' => array(
-                    'name' => 'code',
+                    'name' => 'pre class="language-html"',
                     'text' => $text,
                 ),
             );

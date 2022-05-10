@@ -125,7 +125,7 @@ class MDSidebar
 		{
 			if(strlen($line) != 0)
 			{
-				if($line[0] == '#')
+				if($line[0] == '#' and $line[1] != '#')
 				{
 					$label = trim(str_replace('#','',$line));
 					$label_alias = trim(str_replace(' ','-',trim($label)));
@@ -176,7 +176,7 @@ class MDSidebar
 			}
 			else
 			{
-				if($line[0] == '#')
+				if($line[0] == '#' and $line[1] != '#')
 				{
 					$label = trim(str_replace('#','',$line));
 					$label_alias = trim(str_replace(' ','-',trim($label)));
