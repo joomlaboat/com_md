@@ -2,7 +2,7 @@
 /**
  * @MD Joomla! Native Component
  * @author Ivan Komlev <ivankomlev@gmail.com>
- * @link http://joomlaboat.com
+ * @link https://joomlaboat.com
  * @GNU General Public License
  **/
 
